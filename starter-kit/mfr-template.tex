@@ -1,0 +1,72 @@
+% ============================================================================
+%  ARMY MEMORANDUM FOR RECORD  --  fill-in template
+%  Uses the armymemo document class (AR 25-50 compliant).
+%
+%  HOW TO COMPILE
+%  --------------
+%  This file needs TWO companion files in the SAME folder:
+%      armymemo.cls   (the rulebook -- all AR 25-50 formatting)
+%      DODb1.pdf      (the DoD seal)
+%
+%  Compiler: LuaLaTeX  (NOT pdfLaTeX -- the class uses real Arial via fontspec).
+%  Run it TWICE so cross-references settle:
+%      lualatex mfr-template.tex && lualatex mfr-template.tex
+%
+%  On Overleaf:  Menu (top-left) -> Compiler -> LuaLaTeX, then Recompile.
+%
+%  RULE: Never invent a fact. If you don't have a name, date, or phone number,
+%  leave the \rule{}{} blank in place. A blank line is honest; a wrong fact is not.
+% ============================================================================
+
+\documentclass{armymemo}
+
+% Optional polish: stop ugly hyphenation of long technical words.
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\sloppy
+
+% ---- LETTERHEAD: your organization and address (three lines) ----------------
+\address{\rule{2.6in}{0.4pt}}          % e.g. Madigan Army Medical Center
+\address{\rule{2.6in}{0.4pt}}          % e.g. 9040 Jackson Avenue
+\address{\rule{2.6in}{0.4pt}}          % e.g. Joint Base Lewis-McChord, WA  98431
+
+% ---- ROUTING & SIGNATURE BLOCK ---------------------------------------------
+\officesymbol{\rule{0.9in}{0.4pt}}     % office symbol, e.g. MCHJ-DCA
+\signaturedate{\rule{1.2in}{0.4pt}}    % e.g. 5 May 2026
+
+\memoline{MEMORANDUM FOR RECORD}       % or: MEMORANDUM FOR <addressee>
+\subject{\rule{3.5in}{0.4pt}}          % subject line, 10 words or fewer
+
+\author{\rule{2in}{0.4pt}}             % FULL NAME IN CAPS, e.g. JARED L. BLACK
+\rank{\rule{1.3in}{0.4pt}}             % e.g. Lieutenant Colonel
+\branch{\rule{0.4in}{0.4pt}}           % branch ABBREVIATION, e.g. MS, MC, AN
+\title{\rule{2in}{0.4pt}}              % duty title, e.g. Deputy Commander for Administration
+
+\begin{document}
+\begin{enumerate}
+
+  \item References.
+        % List authorities first. Example:
+        % AR 25-50, Preparing and Managing Correspondence, 10 OCT 2020.
+        \rule{4.5in}{0.4pt}
+
+  \item Purpose.
+        % BLUF -- the bottom line up front, in one or two sentences.
+        \rule{5.5in}{0.4pt}
+
+  \item % Body paragraph heading, e.g. "Background." or "Policy."
+        \rule{5.5in}{0.4pt}
+
+        \begin{enumerate}
+          \item \rule{5in}{0.4pt}   % subparagraph a.
+          \item \rule{5in}{0.4pt}   % subparagraph b.
+        \end{enumerate}
+
+  \item % Another body paragraph, e.g. "Implementation."
+        \rule{5.5in}{0.4pt}
+
+  \item The point of contact is the undersigned at
+        \rule{1.6in}{0.4pt} or \rule{2.2in}{0.4pt}.
+
+\end{enumerate}
+\end{document}

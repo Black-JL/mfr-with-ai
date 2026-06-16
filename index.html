@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Make an Army Memo with AI — Start Here</title>
+<meta name="description" content="A step-by-step guide to generating AR 25-50 compliant Army memos with AI, plus a downloadable starter kit. By LTC Jared Black.">
+<style>
+  :root {
+    --fg:#141414; --fg-soft:#3a3a3a; --fg-muted:#6b6b6b;
+    --accent:#154734; --accent-mid:#3d7a5c; --accent-pale:#f3f7f4; --accent-soft:#e3ece6;
+    --rule:#e2e2e2; --bad:#8a2c1f; --bad-soft:#fbf3f1;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Helvetica Neue",system-ui,sans-serif;
+    --serif:"Charter","Iowan Old Style","Source Serif Pro",Palatino,Georgia,serif;
+    --mono:"SF Mono","Cascadia Code",Consolas,Menlo,monospace;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    font-family:var(--sans); color:var(--fg); background:#fff;
+    font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .wrap { max-width:880px; margin:0 auto; padding:0 24px 64px; }
+  a { color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent-mid); }
+  a:hover { background:var(--accent-pale); }
+  code { font-family:var(--mono); font-size:0.86em; background:var(--accent-soft); color:var(--accent); padding:1px 5px; border-radius:3px; }
+  h2 { font-size:13px; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:48px 0 16px; padding-bottom:8px; border-bottom:1px solid var(--rule); }
+  h3 { font-size:19px; font-weight:700; color:var(--accent); margin-bottom:4px; letter-spacing:-0.01em; }
+  p { margin-bottom:12px; }
+
+  /* ---- HERO ---- */
+  .hero { border-top:4px solid var(--accent); background:var(--accent-pale); }
+  .hero-inner { max-width:880px; margin:0 auto; padding:34px 24px 30px; }
+  .eyebrow { font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); font-weight:700; margin-bottom:10px; }
+  .hero h1 { font-size:40px; font-weight:300; letter-spacing:-0.02em; line-height:1.05; margin-bottom:14px; }
+  .hero h1 b { font-weight:700; color:var(--accent); }
+  .hero .sub { font-family:var(--serif); font-size:19px; color:var(--fg-soft); line-height:1.5; max-width:42em; margin-bottom:22px; }
+  .btns { display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
+  .btn { display:inline-flex; align-items:center; gap:9px; font-weight:700; font-size:15px; padding:12px 20px; border-radius:7px; border:none; }
+  .btn-primary { background:var(--accent); color:#fff; }
+  .btn-primary:hover { background:#0e3526; background-clip:border-box; }
+  .btn-secondary { background:#fff; color:var(--accent); border:1.5px solid var(--accent); }
+  .btn-secondary:hover { background:var(--accent-pale); }
+  .btn .sz { font-weight:400; opacity:0.75; font-size:13px; }
+  .btn:hover { background-color:#0e3526; }
+  .btn-secondary:hover { background-color:var(--accent-pale); }
+
+  /* ---- PROMISES ---- */
+  .promises { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:8px; }
+  .promise { background:#fff; border:1px solid var(--rule); border-top:3px solid var(--accent); border-radius:6px; padding:16px 18px; }
+  .promise b { display:block; color:var(--accent); font-size:16px; margin-bottom:5px; }
+  .promise span { font-size:14.5px; color:var(--fg-soft); }
+
+  .whynot { font-family:var(--serif); font-size:17px; color:var(--fg-soft); border-left:3px solid var(--accent-soft); padding:6px 0 6px 18px; margin:24px 0 8px; }
+  .whynot b { color:var(--accent); font-family:var(--sans); }
+
+  /* ---- FAST PATH CARD ---- */
+  .card { border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+  .card-head { background:var(--accent); color:#fff; padding:14px 22px; display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px; }
+  .card-head .t { font-size:21px; font-weight:700; }
+  .card-head .meta { font-size:12px; letter-spacing:0.08em; text-transform:uppercase; opacity:0.9; }
+  .card-body { padding:22px; }
+  .need { background:var(--accent-pale); border-left:3px solid var(--accent-mid); border-radius:0 6px 6px 0; padding:12px 16px; font-size:15px; color:var(--fg-soft); margin-bottom:20px; }
+  .need b { color:var(--accent); }
+  .need .fb { display:block; margin-top:8px; font-family:var(--serif); font-style:italic; color:var(--fg-muted); }
+  .need .fb b { font-style:normal; }
+
+  .parts { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+  .part-label { font-family:var(--mono); font-size:12.5px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--accent); padding-bottom:8px; margin-bottom:12px; border-bottom:1px dashed var(--rule); }
+  ol.steps { list-style:none; counter-reset:s; display:grid; gap:11px; }
+  ol.steps li { counter-increment:s; position:relative; padding-left:30px; font-size:15px; color:var(--fg-soft); }
+  ol.steps li::before { content:counter(s); position:absolute; left:0; top:1px; width:21px; height:21px; border-radius:50%; background:var(--accent-soft); color:var(--accent); font-family:var(--mono); font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+  ol.steps li b { color:var(--fg); }
+
+  /* ---- SAFETY ---- */
+  .safety { background:var(--bad-soft); border:1px solid var(--bad); border-left:4px solid var(--bad); border-radius:8px; padding:20px 22px; margin-top:24px; }
+  .safety h3 { color:var(--bad); font-size:17px; margin-bottom:10px; }
+  .safety p { font-size:15px; color:var(--fg-soft); }
+  .safety p:last-child { margin-bottom:0; }
+  .safety b { color:var(--bad); }
+  .safety .ok { color:var(--accent); }
+
+  /* ---- OPTIONAL ---- */
+  .opttag { display:inline-block; font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#fff; background:var(--accent); padding:3px 10px; border-radius:4px; vertical-align:middle; margin-right:10px; }
+  .optnote { font-family:var(--serif); font-style:italic; font-size:17px; color:var(--fg-soft); display:inline; }
+  .mini { font-size:15.5px; color:var(--fg-soft); margin:16px 0 4px; }
+  .mini b { color:var(--accent); }
+
+  .upgrades { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:20px; }
+  .ucard { border:1px solid var(--rule); border-top:3px solid var(--accent-mid); border-radius:7px; padding:18px 20px; }
+  .ucard .us { font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fg-muted); margin-bottom:10px; }
+  .ucard .un { font-size:14px; color:var(--fg-muted); margin-bottom:12px; }
+  .ucard .un b { color:var(--accent); }
+  .ucard ol.steps li { font-size:14.5px; }
+
+  .localbox { background:var(--accent-pale); border-radius:7px; padding:16px 20px; font-size:15px; color:var(--fg-soft); margin-top:18px; }
+  .localbox b { color:var(--accent); }
+
+  /* ---- TABLE ---- */
+  .tablewrap { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; font-size:14.5px; margin-top:4px; }
+  th, td { text-align:left; padding:9px 12px; vertical-align:top; border-bottom:1px solid var(--rule); }
+  thead th { font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--accent); border-bottom:2px solid var(--accent); }
+  td.m { font-weight:700; color:var(--fg); white-space:nowrap; }
+
+  /* ---- GOING FURTHER ---- */
+  .further-note { font-family:var(--serif); font-size:17px; color:var(--fg-soft); margin-bottom:18px; }
+  .links { display:grid; grid-template-columns:1fr 1fr; gap:10px 28px; }
+  .lnk { padding:10px 0; border-bottom:1px solid var(--rule); }
+  .lnk a { font-weight:700; font-size:15.5px; border-bottom:none; }
+  .lnk a:hover { border-bottom:1px solid var(--accent-mid); background:transparent; }
+  .lnk p { font-size:13.5px; color:var(--fg-muted); margin:2px 0 0; }
+
+  /* ---- KIT ---- */
+  .kit { background:#fafaf8; border:1px solid var(--rule); border-radius:7px; padding:16px 20px; }
+  .kit ul { list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:6px 28px; }
+  .kit li { font-size:14.5px; color:var(--fg-soft); padding-left:14px; position:relative; }
+  .kit li::before { content:"\00b7"; position:absolute; left:2px; color:var(--accent); font-weight:700; }
+
+  footer { margin-top:48px; border-top:1px solid var(--rule); padding-top:20px; font-family:var(--serif); font-style:italic; font-size:16px; color:var(--fg-muted); }
+  footer b { font-style:normal; color:var(--accent); }
+  .signoff { margin-top:10px; font-style:normal; font-family:var(--sans); font-size:13px; color:var(--fg-muted); }
+
+  @media (max-width:680px) {
+    .hero h1 { font-size:30px; }
+    .promises, .parts, .upgrades, .links, .kit ul { grid-template-columns:1fr; }
+    .wrap { padding:0 18px 48px; }
+    .hero-inner { padding:26px 18px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">AI Fundamentals in Health Care &middot; Coaching Note</div>
+      <h1>Make an Army memo with AI. <b>Start here.</b></h1>
+      <p class="sub">You watched me generate an AR&nbsp;25-50 memo in seconds during class and asked how it&rsquo;s done. Here it is &mdash; the simple way first. Do this once and you&rsquo;ll have a clean, compliant MFR tonight.</p>
+      <div class="btns">
+        <a class="btn btn-primary" href="./mfr-ai-starter-kit.zip" download>Download the starter kit <span class="sz">.zip &middot; everything you need</span></a>
+        <a class="btn btn-secondary" href="./mfr-ai-explainer.pdf">Printable guide (PDF)</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+
+    <!-- PROMISES -->
+    <div class="promises">
+      <div class="promise"><b>You never learn to code.</b><span>The AI writes the formatting; you copy and paste it. You never type or edit any of it.</span></div>
+      <div class="promise"><b>You install nothing.</b><span>The fast path runs entirely in your web browser. No software, no IT ticket.</span></div>
+      <div class="promise"><b>About 15 minutes.</b><span>That&rsquo;s the first time, while you find the buttons. After that it&rsquo;s about 3&nbsp;minutes a memo.</span></div>
+    </div>
+
+    <p class="whynot"><b>Why not just use Word?</b> Word can&rsquo;t guarantee the exact AR&nbsp;25-50 margins, fonts, and spacing &mdash; you end up fiddling. This routes through a tool that nails the format <em>perfectly, every time</em>. You still never format anything by hand.</p>
+
+    <!-- FAST PATH -->
+    <h2>The fast path &mdash; do this tonight</h2>
+    <div class="card">
+      <div class="card-head"><span class="t">Ask Sage &rarr; Overleaf</span><span class="meta">Browser only &middot; ~15 min first time</span></div>
+      <div class="card-body">
+        <div class="need">
+          <b>You&rsquo;ll need:</b> an <a href="https://www.asksage.ai/">Ask&nbsp;Sage</a> account (the DoD-authorized, CUI-approved AI &mdash; you likely already have access) and a free <a href="https://www.overleaf.com">Overleaf</a> account. Plus the <b>starter kit</b> above (just unzip it).
+          <span class="fb"><b>Not sure you have Ask&nbsp;Sage?</b> Go to <a href="https://www.asksage.ai/">asksage.ai</a> &mdash; Army CAC users sign in at <a href="https://chat.genai.army.mil">chat.genai.army.mil</a> &mdash; and try your login. No access? Email me; for non-sensitive practice you can do the writing step in any commercial AI (ChatGPT or Claude) instead.</span>
+        </div>
+        <div class="parts">
+          <div>
+            <div class="part-label">Part A &middot; Write it (Ask Sage)</div>
+            <ol class="steps">
+              <li>Unzip the starter kit. (Nothing goes to the AI &mdash; you&rsquo;ll only upload two files to Overleaf later.)</li>
+              <li>Log in to <a href="https://www.asksage.ai/">Ask&nbsp;Sage</a> and start a new prompt. In the model dropdown, pick the most capable model offered (the newest GPT or Claude, usually at the top).</li>
+              <li>Open <code>sample-prompt.md</code> from the kit, copy the whole thing, and paste it into Ask&nbsp;Sage. The memo format is <em>built into the prompt</em> &mdash; no file uploads needed.</li>
+              <li>Fill the <code>[brackets]</code> with your memo facts, then send.</li>
+              <li>Ask&nbsp;Sage replies with the LaTeX. Click <b>Copy</b> &mdash; but copy <b>only the code</b>: it must start with <code>\documentclass</code>. Delete any <code>```</code> lines or sentences it adds.</li>
+            </ol>
+          </div>
+          <div>
+            <div class="part-label">Part B &middot; Get the PDF (Overleaf)</div>
+            <ol class="steps">
+              <li>Go to <a href="https://www.overleaf.com">overleaf.com</a> &rarr; sign up free &rarr; <b>New Project</b> &rarr; Blank Project.</li>
+              <li>Click <b>Upload</b> and add <code>armymemo.cls</code> and <code>DODb1.pdf</code> from the kit.</li>
+              <li>Paste the copied LaTeX into the main file (replace what&rsquo;s there).</li>
+              <li><b>Important:</b> <a href="https://www.overleaf.com/learn/how-to/Changing_compiler">Menu &rarr; Compiler &rarr; LuaLaTeX</a> (not the default). Click <b>Recompile</b>.</li>
+              <li>Click <b>Download&nbsp;PDF</b>. That&rsquo;s your memo.</li>
+              <li><b>Blanks?</b> Anywhere the AI lacked a fact shows an underline. Find the matching <code>\rule{&hellip;}</code> in the source, type your text over it, Recompile.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SAFETY -->
+    <div class="safety">
+      <h3>Two non-negotiables &mdash; these matter more than any step above</h3>
+      <p><b>1. Mind where the words go.</b> Ask&nbsp;Sage is a government, CUI-approved system &mdash; fine for sensitive memo content. <span class="ok">Overleaf and commercial chatbots are not.</span> Never paste CUI, PHI, or real PII into them. <b>If your memo contains CUI, skip Overleaf</b> &mdash; compile it on your own computer instead (below), so nothing leaves your machine.</p>
+      <p><b>2. You sign it, you own it.</b> AI invents names, dates, and regulation numbers with total confidence &mdash; a wrong reg number looks exactly as authoritative as a right one. The sample prompt tells it to leave blanks instead of guessing. Read every line before it goes out; &ldquo;the AI wrote it&rdquo; is not a defense.</p>
+    </div>
+
+    <!-- OPTIONAL -->
+    <h2>Optional &mdash; when you&rsquo;re ready to go faster</h2>
+    <p><span class="opttag">Optional</span><span class="optnote">The fast path above is a complete, permanent solution &mdash; many people never need more. If you make memos <em>often</em>, here are two setups that remove the copy-paste.</span></p>
+
+    <p class="mini"><b>First, what you were actually doing.</b> That &ldquo;block of code&rdquo; is <b>LaTeX</b> (say &ldquo;LAY-tek&rdquo;), a typesetting system. A <em>compiler</em> turns it into the finished PDF &mdash; that&rsquo;s what Overleaf did. The format is always perfect because of the class file <code>armymemo.cls</code>: it encodes every AR&nbsp;25-50 rule, so you and the AI only supply the words. The two upgrades below just move the writing and the compiling onto your own computer so there&rsquo;s no carrying files between two websites.</p>
+
+    <div class="upgrades">
+      <div class="ucard">
+        <h3>Claude Cowork</h3>
+        <div class="us">Desktop agent &middot; writes the file for you</div>
+        <div class="un"><b>Need:</b> the <a href="https://claude.com/download">Claude desktop app</a> (<a href="https://claude.com/product/cowork">Cowork</a>, on any paid plan &mdash; Pro or higher).</div>
+        <ol class="steps">
+          <li>Put the starter-kit folder in your Documents folder.</li>
+          <li>Open the app, click <b>Cowork</b>, point it at that folder, grant access.</li>
+          <li>Tell it: &ldquo;Using the armymemo template here, write an MFR about [your facts]. Save it as a new .tex file. Don&rsquo;t make anything up &mdash; leave blanks.&rdquo;</li>
+          <li>It writes the file for you. For the PDF, hand the file to Overleaf, or compile locally if you&rsquo;ve installed LaTeX (below).</li>
+        </ol>
+      </div>
+      <div class="ucard">
+        <h3>Claude Code in VS Code</h3>
+        <div class="us">The way I do it in class &middot; most setup, least effort after</div>
+        <div class="un"><b>Need:</b> <a href="https://code.visualstudio.com/download">VS&nbsp;Code</a>, <a href="https://code.claude.com/docs/en/overview">Claude Code</a>, and LaTeX installed (below).</div>
+        <ol class="steps">
+          <li>Open a folder containing <code>armymemo.cls</code> + <code>DODb1.pdf</code> in VS&nbsp;Code; start Claude Code.</li>
+          <li>Ask in plain English: &ldquo;Using armymemo.cls here, write an MFR about [facts], leave blanks for anything missing, then compile twice with lualatex and open the PDF.&rdquo;</li>
+          <li>It writes the memo, compiles it, and opens the PDF &mdash; no copy-paste, and nothing leaves your machine.</li>
+          <li>Iterate by talking. <em>(In class I use a custom <code>/memo</code> skill that also auto-loads the regs; you can build one once you&rsquo;re comfortable.)</em></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="localbox">
+      <b>Compiling on your own computer</b> (needed for both upgrades, and for any CUI memo): install <a href="https://www.tug.org/mactex/">MacTeX</a> (Mac) or <a href="https://www.tug.org/texlive/">TeX&nbsp;Live</a> (Windows/Linux) &mdash; one time, a few GB. Keep <code>armymemo.cls</code> and <code>DODb1.pdf</code> next to your <code>.tex</code> file and run, twice, in a terminal: <code>lualatex memo.tex &amp;&amp; lualatex memo.tex</code>. Because it&rsquo;s all on your machine, this path is safe for CUI. (The memo uses Times New Roman + Arial; Mac and Overleaf have them, a bare Linux box may need the <code>msttcorefonts</code> package first.)
+    </div>
+
+    <h2>Which is which</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Method</th><th>Setup</th><th>Effort per memo</th><th>Stays on your computer?</th><th>Best for</th></tr></thead>
+        <tbody>
+          <tr><td class="m">Ask&nbsp;Sage &rarr; Overleaf</td><td>None &mdash; browser only</td><td>~3 min (copy-paste)</td><td>No &mdash; uses Overleaf</td><td>Everyone&rsquo;s starting point; all most people need</td></tr>
+          <tr><td class="m">Claude&nbsp;Cowork</td><td>Desktop app, paid plan</td><td>~2 min, no copy-paste</td><td>Writing yes; PDF if LaTeX installed</td><td>Frequent memos, non-technical</td></tr>
+          <tr><td class="m">Claude&nbsp;Code</td><td>Most &mdash; app + LaTeX</td><td>Fastest &mdash; one line</td><td>Yes &mdash; fully local (CUI-safe)</td><td>Power users; sensitive content</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- WHAT'S IN THE KIT -->
+    <h2>What&rsquo;s in the starter kit</h2>
+    <div class="kit">
+      <ul>
+        <li><code>sample-prompt.md</code> &mdash; the ready-to-paste prompt for Part&nbsp;A (no uploads).</li>
+        <li><code>armymemo.cls</code> &mdash; the rulebook (all AR&nbsp;25-50 formatting). Upload to Overleaf.</li>
+        <li><code>DODb1.pdf</code> &mdash; the DoD seal. Upload to Overleaf too.</li>
+        <li><code>mfr-template-EXAMPLE-output.pdf</code> &mdash; what a finished memo looks like.</li>
+        <li><code>mfr-template.tex</code> &mdash; a blank fill-in memo, if you&rsquo;d rather start by hand.</li>
+        <li><code>README.txt</code> &mdash; the same steps, in the folder.</li>
+        <li><code>digsig.sty</code> &mdash; optional; ignore unless you add a digital signature.</li>
+      </ul>
+    </div>
+
+    <!-- GOING FURTHER -->
+    <h2>Going further &mdash; learning it on your own</h2>
+    <p class="further-note">The starter kit gets you a memo today. Past that, going further means teaching yourself a little LaTeX and your tools &mdash; and honestly, it doesn&rsquo;t take much. Start with <a href="https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes">Learn LaTeX in 30 minutes</a>; that&rsquo;s genuinely enough to be dangerous. These are the resources I&rsquo;d point you to:</p>
+    <div class="links">
+      <div class="lnk"><a href="https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes">Overleaf: Learn LaTeX in 30 minutes</a><p>The single best starting point. Free, hands-on.</p></div>
+      <div class="lnk"><a href="https://www.overleaf.com/learn/how-to/Changing_compiler">Overleaf: choosing the compiler</a><p>How to switch to LuaLaTeX (and why it matters here).</p></div>
+      <div class="lnk"><a href="https://github.com/glallen01/army-memorandum-class">armymemo LaTeX class (GitHub)</a><p>The source of <code>armymemo.cls</code> &mdash; docs and updates.</p></div>
+      <div class="lnk"><a href="https://armypubs.army.mil/epubs/DR_pubs/DR_a/ARN42124-AR_25-50-007-WEB-13.pdf">AR 25-50 (the format authority)</a><p>Preparing and Managing Correspondence, 10 Oct 2020.</p></div>
+      <div class="lnk"><a href="https://permanent.fdlp.gov/gpo58255/afh33-337.pdf">The Tongue &amp; Quill (AFH 33-337)</a><p>The Air Force writing-style bible the prompt leans on.</p></div>
+      <div class="lnk"><a href="https://code.claude.com/docs/en/overview">Claude Code documentation</a><p>For the Method-3 setup, when you&rsquo;re ready.</p></div>
+      <div class="lnk"><a href="https://claude.com/product/cowork">Claude Cowork</a><p>The desktop agent behind Method&nbsp;2.</p></div>
+      <div class="lnk"><a href="https://www.tug.org/mactex/">MacTeX</a> / <a href="https://www.tug.org/texlive/">TeX&nbsp;Live</a><p>Install LaTeX locally to compile on your own machine.</p></div>
+    </div>
+
+    <footer>
+      <b>Bottom line:</b> do the fast path tonight &mdash; you&rsquo;ll have a compliant MFR in about 15&nbsp;minutes, and you never have to touch the other two methods unless you want to go faster. Stuck on a step? Reach out anytime &mdash; happy to screen-share.
+      <div class="signoff">&mdash; LTC Jared Black &middot; AI Fundamentals in Health Care</div>
+    </footer>
+
+  </div>
+</body>
+</html>
