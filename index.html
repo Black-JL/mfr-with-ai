@@ -288,6 +288,8 @@ Here is what the memo is about:
       </div>
     </div>
 
+    <p class="mini" style="margin-top:18px;"><b>Not locked to one company.</b> The AI behind these is interchangeable &mdash; swap Claude Code for <a href="https://developers.openai.com/codex/cli/">OpenAI Codex</a> or <a href="https://github.com/google-gemini/gemini-cli">Google Gemini CLI</a> and you&rsquo;ll get similar results. What makes the memo come out right isn&rsquo;t <em>which</em> model you use &mdash; it&rsquo;s the formatting rules in <code>armymemo.cls</code> plus the prompt. Use whatever you already have access to.</p>
+
     <div class="localbox">
       <b>Making the PDF on your own computer</b> (needed for both options, and for any CUI memo): this replaces Overleaf with free software on your machine. Install <a href="https://www.tug.org/mactex/">MacTeX</a> (Mac) or <a href="https://www.tug.org/texlive/">TeX&nbsp;Live</a> (Windows/Linux) &mdash; a one-time download, a few GB. Keep <code>armymemo.cls</code> and <code>DODb1.pdf</code> next to your memo file, then run this command twice: <code>lualatex memo.tex &amp;&amp; lualatex memo.tex</code>. Because nothing leaves your computer, this path is safe for CUI. (The memo uses Times New Roman + Arial; Mac and Overleaf already have them, a bare Linux machine may need the <code>msttcorefonts</code> package first.)
     </div>
