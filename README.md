@@ -6,11 +6,11 @@ A short, practical guide to generating **AR 25-50 compliant Army memorandums (MF
 
 The guide walks you through three methods, easiest first:
 
-1. **Ask Sage → Overleaf** — the fast path. Browser only, nothing to install, ~15 minutes the first time. *(All most people ever need.)*
+1. **A chat AI → Overleaf** — the fast path. Use Ask Sage (CUI-approved) or any chatbot — ChatGPT, Claude, Gemini. Browser only, nothing to install, ~15 minutes the first time. *(All most people ever need.)*
 2. **Claude Cowork** — a desktop agent that writes the file for you.
 3. **Claude Code in VS Code** — the way it's demoed in class; most setup, least effort per memo.
 
-You never learn or edit LaTeX — the AI writes it, you copy and paste.
+You don't need to learn LaTeX — the AI writes it, you copy, paste, and do a little light cleanup. Expect some trial and error the first time; it's still far faster than formatting by hand.
 
 ## Downloads
 
@@ -26,6 +26,6 @@ Or click the green **Code** button above → **Download ZIP** to get the whole t
 
 ---
 
-*Built for the AI Fundamentals in Health Care course. Questions? Reach out — happy to help. — LTC Jared Black*
+*Built for the AI Fundamentals in Health Care course. — Dr. Jared Black*
 
 *The `armymemo.cls` class is from [glallen01/army-memorandum-class](https://github.com/glallen01/army-memorandum-class).*

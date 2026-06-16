@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Make an Army Memo with AI — Start Here</title>
-<meta name="description" content="A step-by-step guide to generating AR 25-50 compliant Army memos with AI, plus a downloadable starter kit. By LTC Jared Black.">
+<meta name="description" content="A step-by-step guide to generating AR 25-50 compliant Army memos with AI, plus a downloadable starter kit. By Dr. Jared Black.">
 <style>
   :root {
     --fg:#141414; --fg-soft:#3a3a3a; --fg-muted:#6b6b6b;
@@ -71,6 +71,10 @@
   ol.steps li { counter-increment:s; position:relative; padding-left:30px; font-size:15px; color:var(--fg-soft); }
   ol.steps li::before { content:counter(s); position:absolute; left:0; top:1px; width:21px; height:21px; border-radius:50%; background:var(--accent-soft); color:var(--accent); font-family:var(--mono); font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; }
   ol.steps li b { color:var(--fg); }
+
+  /* ---- HEADS-UP NOTE ---- */
+  .headsup { background:#f7f7f5; border:1px solid var(--rule); border-left:4px solid var(--fg-muted); border-radius:8px; padding:16px 22px; margin-top:24px; font-size:15px; color:var(--fg-soft); }
+  .headsup b { color:var(--fg); }
 
   /* ---- SAFETY ---- */
   .safety { background:var(--bad-soft); border:1px solid var(--bad); border-left:4px solid var(--bad); border-radius:8px; padding:20px 22px; margin-top:24px; }
@@ -148,31 +152,31 @@
 
     <!-- PROMISES -->
     <div class="promises">
-      <div class="promise"><b>You never learn to code.</b><span>The AI writes the formatting; you copy and paste it. You never type or edit any of it.</span></div>
+      <div class="promise"><b>You don&rsquo;t learn to code.</b><span>The AI writes the LaTeX formatting &mdash; you mostly copy, paste, and do a little light cleanup. No need to learn it.</span></div>
       <div class="promise"><b>You install nothing.</b><span>The fast path runs entirely in your web browser. No software, no IT ticket.</span></div>
       <div class="promise"><b>About 15 minutes.</b><span>That&rsquo;s the first time, while you find the buttons. After that it&rsquo;s about 3&nbsp;minutes a memo.</span></div>
     </div>
 
-    <p class="whynot"><b>Why not just use Word?</b> Word can&rsquo;t guarantee the exact AR&nbsp;25-50 margins, fonts, and spacing &mdash; you end up fiddling. This routes through a tool that nails the format <em>perfectly, every time</em>. You still never format anything by hand.</p>
+    <p class="whynot"><b>Why not just use Word?</b> In Word you fight the exact AR&nbsp;25-50 margins, fonts, and spacing by hand. This hands that formatting to a tool built for it, so you spend your time on the words &mdash; not rebuilding the layout. It won&rsquo;t be flawless on the first click (see the heads-up below), but it gets you most of the way there, fast.</p>
 
     <!-- FAST PATH -->
     <h2>The fast path &mdash; do this tonight</h2>
     <div class="card">
-      <div class="card-head"><span class="t">Ask Sage &rarr; Overleaf</span><span class="meta">Browser only &middot; ~15 min first time</span></div>
+      <div class="card-head"><span class="t">Chat AI &rarr; Overleaf</span><span class="meta">Browser only &middot; ~15 min first time</span></div>
       <div class="card-body">
         <div class="need">
-          <b>You&rsquo;ll need:</b> an <a href="https://www.asksage.ai/">Ask&nbsp;Sage</a> account (the DoD-authorized, CUI-approved AI &mdash; you likely already have access) and a free <a href="https://www.overleaf.com">Overleaf</a> account. Plus the <b>starter kit</b> above (just unzip it).
-          <span class="fb"><b>Not sure you have Ask&nbsp;Sage?</b> Go to <a href="https://www.asksage.ai/">asksage.ai</a> &mdash; Army CAC users sign in at <a href="https://chat.genai.army.mil">chat.genai.army.mil</a> &mdash; and try your login. No access? Email me; for non-sensitive practice you can do the writing step in any commercial AI (ChatGPT or Claude) instead.</span>
+          <b>You&rsquo;ll need:</b> any chat-based AI &mdash; <a href="https://www.asksage.ai/">Ask&nbsp;Sage</a> (the DoD-authorized, CUI-approved one), or ChatGPT / Claude / Gemini for non-sensitive memos &mdash; and a free <a href="https://www.overleaf.com">Overleaf</a> account. Plus the <b>starter kit</b> above (just unzip it).
+          <span class="fb">For sensitive (CUI) memos, use <a href="https://www.asksage.ai/">asksage.ai</a> (Army CAC users sign in at <a href="https://chat.genai.army.mil">chat.genai.army.mil</a>). For routine memos, any chatbot you already have works.</span>
         </div>
         <div class="parts">
           <div>
-            <div class="part-label">Part A &middot; Write it (Ask Sage)</div>
+            <div class="part-label">Part A &middot; Write it (in the chat)</div>
             <ol class="steps">
               <li>Unzip the starter kit. (Nothing goes to the AI &mdash; you&rsquo;ll only upload two files to Overleaf later.)</li>
-              <li>Log in to <a href="https://www.asksage.ai/">Ask&nbsp;Sage</a> and start a new prompt. In the model dropdown, pick the most capable model offered (the newest GPT or Claude, usually at the top).</li>
-              <li>Open <code>sample-prompt.md</code> from the kit, copy the whole thing, and paste it into Ask&nbsp;Sage. The memo format is <em>built into the prompt</em> &mdash; no file uploads needed.</li>
+              <li>Open your AI (Ask&nbsp;Sage, ChatGPT, Claude&hellip;) and start a new chat. Pick the most capable model offered (the newest one, usually at the top).</li>
+              <li>Open <code>sample-prompt.md</code> from the kit, copy the whole thing, and paste it into the chat. The memo format is <em>built into the prompt</em> &mdash; no file uploads needed.</li>
               <li>Fill the <code>[brackets]</code> with your memo facts, then send.</li>
-              <li>Ask&nbsp;Sage replies with the LaTeX. Click <b>Copy</b> &mdash; but copy <b>only the code</b>: it must start with <code>\documentclass</code>. Delete any <code>```</code> lines or sentences it adds.</li>
+              <li>The AI replies with the LaTeX. Click <b>Copy</b> &mdash; but copy <b>only the code</b>: it must start with <code>\documentclass</code>. Delete any <code>```</code> lines or sentences it adds.</li>
             </ol>
           </div>
           <div>
@@ -190,6 +194,11 @@
       </div>
     </div>
 
+    <!-- HEADS UP -->
+    <div class="headsup">
+      <b>Heads up &mdash; expect a little fiddling.</b> This is AI&nbsp;+&nbsp;LaTeX, not a one-click button. The first time, plan on some trial and error: sometimes the AI wraps its answer in <code>```</code> marks or adds a sentence (delete those); now and then it returns code that won&rsquo;t compile (paste the error message back into the chat and ask it to fix it); and you&rsquo;ll tweak wording and fill in blanks before it&rsquo;s right. It&rsquo;s still far faster than formatting by hand.
+    </div>
+
     <!-- SAFETY -->
     <div class="safety">
       <h3>Two non-negotiables &mdash; these matter more than any step above</h3>
@@ -201,7 +210,7 @@
     <h2>Optional &mdash; when you&rsquo;re ready to go faster</h2>
     <p><span class="opttag">Optional</span><span class="optnote">The fast path above is a complete, permanent solution &mdash; many people never need more. If you make memos <em>often</em>, here are two setups that remove the copy-paste.</span></p>
 
-    <p class="mini"><b>First, what you were actually doing.</b> That &ldquo;block of code&rdquo; is <b>LaTeX</b> (say &ldquo;LAY-tek&rdquo;), a typesetting system. A <em>compiler</em> turns it into the finished PDF &mdash; that&rsquo;s what Overleaf did. The format is always perfect because of the class file <code>armymemo.cls</code>: it encodes every AR&nbsp;25-50 rule, so you and the AI only supply the words. The two upgrades below just move the writing and the compiling onto your own computer so there&rsquo;s no carrying files between two websites.</p>
+    <p class="mini"><b>First, what you were actually doing.</b> That &ldquo;block of code&rdquo; is <b>LaTeX</b> (say &ldquo;LAY-tek&rdquo;), a typesetting system. A <em>compiler</em> turns it into the finished PDF &mdash; that&rsquo;s what Overleaf did. The formatting all comes from the class file <code>armymemo.cls</code>: it encodes the AR&nbsp;25-50 rules, so you and the AI supply the words and it handles the layout. The two upgrades below just move the writing and the compiling onto your own computer so there&rsquo;s no carrying files between two websites.</p>
 
     <div class="upgrades">
       <div class="ucard">
@@ -237,7 +246,7 @@
       <table>
         <thead><tr><th>Method</th><th>Setup</th><th>Effort per memo</th><th>Stays on your computer?</th><th>Best for</th></tr></thead>
         <tbody>
-          <tr><td class="m">Ask&nbsp;Sage &rarr; Overleaf</td><td>None &mdash; browser only</td><td>~3 min (copy-paste)</td><td>No &mdash; uses Overleaf</td><td>Everyone&rsquo;s starting point; all most people need</td></tr>
+          <tr><td class="m">Chat&nbsp;AI &rarr; Overleaf</td><td>None &mdash; browser only</td><td>~3 min (copy-paste)</td><td>No &mdash; uses Overleaf</td><td>Everyone&rsquo;s starting point; all most people need</td></tr>
           <tr><td class="m">Claude&nbsp;Cowork</td><td>Desktop app, paid plan</td><td>~2 min, no copy-paste</td><td>Writing yes; PDF if LaTeX installed</td><td>Frequent memos, non-technical</td></tr>
           <tr><td class="m">Claude&nbsp;Code</td><td>Most &mdash; app + LaTeX</td><td>Fastest &mdash; one line</td><td>Yes &mdash; fully local (CUI-safe)</td><td>Power users; sensitive content</td></tr>
         </tbody>
@@ -273,8 +282,8 @@
     </div>
 
     <footer>
-      <b>Bottom line:</b> do the fast path tonight &mdash; you&rsquo;ll have a compliant MFR in about 15&nbsp;minutes, and you never have to touch the other two methods unless you want to go faster. Stuck on a step? Reach out anytime &mdash; happy to screen-share.
-      <div class="signoff">&mdash; LTC Jared Black &middot; AI Fundamentals in Health Care</div>
+      <b>Bottom line:</b> do the fast path first &mdash; once you&rsquo;ve found the buttons, you&rsquo;ll have a compliant MFR in about 15&nbsp;minutes, and you never have to touch the other two methods unless you want to go faster.
+      <div class="signoff">&mdash; Dr. Jared Black &middot; AI Fundamentals in Health Care</div>
     </footer>
 
   </div>

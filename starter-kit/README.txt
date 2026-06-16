@@ -40,12 +40,21 @@ the formatting rules; you and the AI only supply the words.
 
 FAST PATH (no install)
 ----------------------
-  1. Paste sample-prompt.md into AskSage, fill in your facts, send.
-  2. Copy ONLY the LaTeX it returns (no ``` lines, no explanation — it must
+  1. Paste sample-prompt.md into Ask Sage (or any chatbot -- ChatGPT, Claude,
+     Gemini), fill in your facts, send. For sensitive/CUI memos use Ask Sage.
+  2. Copy ONLY the LaTeX it returns (no ``` lines, no explanation -- it must
      start with \documentclass{armymemo}).
   3. On overleaf.com: New Project -> upload armymemo.cls + DODb1.pdf ->
      paste the LaTeX into the main file -> Menu -> Compiler -> LuaLaTeX ->
      Recompile -> Download PDF.
+
+EXPECT SOME TRIAL AND ERROR
+---------------------------
+This is AI + LaTeX, not a one-click button. Sometimes the AI wraps its answer
+in ``` marks or adds a sentence (delete those); sometimes it returns code that
+won't compile (paste the error back into the chat and ask it to fix it); and
+you'll tweak wording and fill blanks before it's right. Still far faster than
+formatting by hand.
 
 COMPILE LOCALLY (instead of Overleaf)
 -------------------------------------
