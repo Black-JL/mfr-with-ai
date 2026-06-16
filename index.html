@@ -152,12 +152,12 @@
 
     <!-- PROMISES -->
     <div class="promises">
-      <div class="promise"><b>You don&rsquo;t learn to code.</b><span>The AI writes the LaTeX formatting &mdash; you mostly copy, paste, and do a little light cleanup. No need to learn it.</span></div>
+      <div class="promise"><b>You don&rsquo;t learn to code.</b><span>The AI writes the formatting for you. You just copy it, paste it, and tidy up a little &mdash; nothing to learn.</span></div>
       <div class="promise"><b>You install nothing.</b><span>The fast path runs entirely in your web browser. No software, no IT ticket.</span></div>
       <div class="promise"><b>About 15 minutes.</b><span>That&rsquo;s the first time, while you find the buttons. After that it&rsquo;s about 3&nbsp;minutes a memo.</span></div>
     </div>
 
-    <p class="whynot"><b>Why not just use Word?</b> In Word you fight the exact AR&nbsp;25-50 margins, fonts, and spacing by hand. This hands that formatting to a tool built for it, so you spend your time on the words &mdash; not rebuilding the layout. It won&rsquo;t be flawless on the first click (see the heads-up below), but it gets you most of the way there, fast.</p>
+    <p class="whynot"><b>Why not just use Word?</b> In Word, you&rsquo;d line up the exact AR&nbsp;25-50 margins, fonts, and spacing yourself. Here, a free website does that part for you, so you only deal with the words. It won&rsquo;t be perfect on the first try (see the heads-up below), but it gets you most of the way there, fast.</p>
 
     <!-- FAST PATH -->
     <h2>The fast path &mdash; do this tonight</h2>
@@ -173,21 +173,21 @@
             <div class="part-label">Part A &middot; Write it (in the chat)</div>
             <ol class="steps">
               <li>Unzip the starter kit. (Nothing goes to the AI &mdash; you&rsquo;ll only upload two files to Overleaf later.)</li>
-              <li>Open your AI (Ask&nbsp;Sage, ChatGPT, Claude&hellip;) and start a new chat. Pick the most capable model offered (the newest one, usually at the top).</li>
-              <li>Open <code>sample-prompt.md</code> from the kit, copy the whole thing, and paste it into the chat. The memo format is <em>built into the prompt</em> &mdash; no file uploads needed.</li>
-              <li>Fill the <code>[brackets]</code> with your memo facts, then send.</li>
-              <li>The AI replies with the LaTeX. Click <b>Copy</b> &mdash; but copy <b>only the code</b>: it must start with <code>\documentclass</code>. Delete any <code>```</code> lines or sentences it adds.</li>
+              <li>Open your AI (Ask&nbsp;Sage, ChatGPT, or Claude) and start a new chat. If it asks you to choose a model, pick the newest one.</li>
+              <li>From the kit, open the file <code>sample-prompt.md</code> (it opens in any text app), copy everything in it, and paste it into the chat. It already includes the formatting instructions, so you don&rsquo;t attach anything.</li>
+              <li>Where the prompt shows <code>[brackets]</code>, type in your memo details. Then send.</li>
+              <li>The AI answers with a block of formatting text. Copy it &mdash; but <b>only that text</b>. It should begin with <code>\documentclass</code>; if the AI wrapped it in <code>```</code> marks or added any sentences, leave those out.</li>
             </ol>
           </div>
           <div>
             <div class="part-label">Part B &middot; Get the PDF (Overleaf)</div>
             <ol class="steps">
               <li>Go to <a href="https://www.overleaf.com">overleaf.com</a> &rarr; sign up free &rarr; <b>New Project</b> &rarr; Blank Project.</li>
-              <li>Click <b>Upload</b> and add <code>armymemo.cls</code> and <code>DODb1.pdf</code> from the kit.</li>
-              <li>Paste the copied LaTeX into the main file (replace what&rsquo;s there).</li>
-              <li><b>Important:</b> <a href="https://www.overleaf.com/learn/how-to/Changing_compiler">Menu &rarr; Compiler &rarr; LuaLaTeX</a> (not the default). Click <b>Recompile</b>.</li>
+              <li>Click <b>Upload</b> and add two files from the kit: <code>armymemo.cls</code> and <code>DODb1.pdf</code>.</li>
+              <li>Delete the sample text in the editing box and paste in what you copied from the AI.</li>
+              <li><b>Important:</b> open the <a href="https://www.overleaf.com/learn/how-to/Changing_compiler">Menu (top-left) and set &ldquo;Compiler&rdquo; to LuaLaTeX</a> &mdash; Overleaf&rsquo;s default won&rsquo;t work here. Then click <b>Recompile</b>.</li>
               <li>Click <b>Download&nbsp;PDF</b>. That&rsquo;s your memo.</li>
-              <li><b>Blanks?</b> Anywhere the AI lacked a fact shows an underline. Find the matching <code>\rule{&hellip;}</code> in the source, type your text over it, Recompile.</li>
+              <li><b>Blank lines?</b> An underline shows wherever the AI didn&rsquo;t have a detail. In the text, find the matching <code>\rule{&hellip;}</code>, type your information over it, and Recompile.</li>
             </ol>
           </div>
         </div>
@@ -196,13 +196,13 @@
 
     <!-- HEADS UP -->
     <div class="headsup">
-      <b>Heads up &mdash; expect a little fiddling.</b> This is AI&nbsp;+&nbsp;LaTeX, not a one-click button. The first time, plan on some trial and error: sometimes the AI wraps its answer in <code>```</code> marks or adds a sentence (delete those); now and then it returns code that won&rsquo;t compile (paste the error message back into the chat and ask it to fix it); and you&rsquo;ll tweak wording and fill in blanks before it&rsquo;s right. It&rsquo;s still far faster than formatting by hand.
+      <b>Heads up &mdash; expect a little fiddling.</b> This is a copy-paste process, not a one-click button. The first time, expect some back-and-forth: now and then the AI adds <code>```</code> marks or a stray sentence (just delete them), or gives text that won&rsquo;t turn into a PDF (copy the red error message, paste it back into the chat, and ask it to fix it). And you&rsquo;ll polish the wording and fill in blanks before it&rsquo;s right. It&rsquo;s still much faster than formatting by hand.
     </div>
 
     <!-- SAFETY -->
     <div class="safety">
       <h3>Two non-negotiables &mdash; these matter more than any step above</h3>
-      <p><b>1. Mind where the words go.</b> Ask&nbsp;Sage is a government, CUI-approved system &mdash; fine for sensitive memo content. <span class="ok">Overleaf and commercial chatbots are not.</span> Never paste CUI, PHI, or real PII into them. <b>If your memo contains CUI, skip Overleaf</b> &mdash; compile it on your own computer instead (below), so nothing leaves your machine.</p>
+      <p><b>1. Mind where the words go.</b> Ask&nbsp;Sage is a government, CUI-approved system &mdash; fine for sensitive memo content. <span class="ok">Overleaf and commercial chatbots are not.</span> Never paste CUI, PHI, or real PII into them. <b>If your memo contains CUI, skip Overleaf</b> &mdash; make the PDF on your own computer instead (below), so nothing leaves your machine.</p>
       <p><b>2. You sign it, you own it.</b> AI invents names, dates, and regulation numbers with total confidence &mdash; a wrong reg number looks exactly as authoritative as a right one. The sample prompt tells it to leave blanks instead of guessing. Read every line before it goes out; &ldquo;the AI wrote it&rdquo; is not a defense.</p>
     </div>
 
@@ -210,18 +210,18 @@
     <h2>Optional &mdash; when you&rsquo;re ready to go faster</h2>
     <p><span class="opttag">Optional</span><span class="optnote">The fast path above is a complete, permanent solution &mdash; many people never need more. If you make memos <em>often</em>, here are two setups that remove the copy-paste.</span></p>
 
-    <p class="mini"><b>First, what you were actually doing.</b> That &ldquo;block of code&rdquo; is <b>LaTeX</b> (say &ldquo;LAY-tek&rdquo;), a typesetting system. A <em>compiler</em> turns it into the finished PDF &mdash; that&rsquo;s what Overleaf did. The formatting all comes from the class file <code>armymemo.cls</code>: it encodes the AR&nbsp;25-50 rules, so you and the AI supply the words and it handles the layout. The two upgrades below just move the writing and the compiling onto your own computer so there&rsquo;s no carrying files between two websites.</p>
+    <p class="mini"><b>First, the one bit of jargon.</b> That block of formatting text has a name &mdash; <b>LaTeX</b> (say &ldquo;LAY-tek&rdquo;). Overleaf is just a free website that turns it into the finished PDF. And the reason every memo comes out in correct AR&nbsp;25-50 format is one file in the kit, <code>armymemo.cls</code> &mdash; think of it as the formatting rulebook. You and the AI supply the words; it handles the layout. The two options below do the same thing, just without copying text between two websites.</p>
 
     <div class="upgrades">
       <div class="ucard">
         <h3>Claude Cowork</h3>
-        <div class="us">Desktop agent &middot; writes the file for you</div>
+        <div class="us">An app on your computer &middot; writes the file for you</div>
         <div class="un"><b>Need:</b> the <a href="https://claude.com/download">Claude desktop app</a> (<a href="https://claude.com/product/cowork">Cowork</a>, on any paid plan &mdash; Pro or higher).</div>
         <ol class="steps">
           <li>Put the starter-kit folder in your Documents folder.</li>
           <li>Open the app, click <b>Cowork</b>, point it at that folder, grant access.</li>
           <li>Tell it: &ldquo;Using the armymemo template here, write an MFR about [your facts]. Save it as a new .tex file. Don&rsquo;t make anything up &mdash; leave blanks.&rdquo;</li>
-          <li>It writes the file for you. For the PDF, hand the file to Overleaf, or compile locally if you&rsquo;ve installed LaTeX (below).</li>
+          <li>It writes the file for you. For the PDF, hand the file to Overleaf, or make it on your computer if you&rsquo;ve installed the software (below).</li>
         </ol>
       </div>
       <div class="ucard">
@@ -231,14 +231,14 @@
         <ol class="steps">
           <li>Open a folder containing <code>armymemo.cls</code> + <code>DODb1.pdf</code> in VS&nbsp;Code; start Claude Code.</li>
           <li>Ask in plain English: &ldquo;Using armymemo.cls here, write an MFR about [facts], leave blanks for anything missing, then compile twice with lualatex and open the PDF.&rdquo;</li>
-          <li>It writes the memo, compiles it, and opens the PDF &mdash; no copy-paste, and nothing leaves your machine.</li>
+          <li>It writes the memo, turns it into a PDF, and opens it &mdash; no copy-paste, and nothing leaves your machine.</li>
           <li>Iterate by talking. <em>(In class I use a custom <code>/memo</code> skill that also auto-loads the regs; you can build one once you&rsquo;re comfortable.)</em></li>
         </ol>
       </div>
     </div>
 
     <div class="localbox">
-      <b>Compiling on your own computer</b> (needed for both upgrades, and for any CUI memo): install <a href="https://www.tug.org/mactex/">MacTeX</a> (Mac) or <a href="https://www.tug.org/texlive/">TeX&nbsp;Live</a> (Windows/Linux) &mdash; one time, a few GB. Keep <code>armymemo.cls</code> and <code>DODb1.pdf</code> next to your <code>.tex</code> file and run, twice, in a terminal: <code>lualatex memo.tex &amp;&amp; lualatex memo.tex</code>. Because it&rsquo;s all on your machine, this path is safe for CUI. (The memo uses Times New Roman + Arial; Mac and Overleaf have them, a bare Linux box may need the <code>msttcorefonts</code> package first.)
+      <b>Making the PDF on your own computer</b> (needed for both options, and for any CUI memo): this replaces Overleaf with free software on your machine. Install <a href="https://www.tug.org/mactex/">MacTeX</a> (Mac) or <a href="https://www.tug.org/texlive/">TeX&nbsp;Live</a> (Windows/Linux) &mdash; a one-time download, a few GB. Keep <code>armymemo.cls</code> and <code>DODb1.pdf</code> next to your memo file, then run this command twice: <code>lualatex memo.tex &amp;&amp; lualatex memo.tex</code>. Because nothing leaves your computer, this path is safe for CUI. (The memo uses Times New Roman + Arial; Mac and Overleaf already have them, a bare Linux machine may need the <code>msttcorefonts</code> package first.)
     </div>
 
     <h2>Which is which</h2>
