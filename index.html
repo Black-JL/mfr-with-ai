@@ -185,20 +185,20 @@
             <ol class="steps">
               <li>Open your AI (Ask&nbsp;Sage, ChatGPT, or Claude) and start a new chat. If it asks you to pick a model, choose the newest one.</li>
               <li><b>Copy the prompt below</b> and paste it into the chat. (It already has the formatting built in, so you don&rsquo;t upload anything here.)</li>
-              <li>Replace the words inside the brackets with your details, but keep the <code>\backslash</code> words exactly as they are. <b>Easiest:</b> leave the <code>&lt;&hellip;&gt;</code> bits alone and just fill the <code>[ brain-dump ]</code> block at the bottom &mdash; the AI fills in the rest. Then send.</li>
-              <li>The AI replies with a block of formatting text. <b>Copy only that text</b> &mdash; it should start with <code>\documentclass</code>. If it added <code>```</code> marks or sentences around it, leave those out.</li>
+              <li>You don&rsquo;t have to touch the slashy parts. <b>Easiest:</b> leave everything as-is and just fill in the <code>[ brain-dump ]</code> block at the bottom with your situation &mdash; the AI builds the rest from that. Then send.</li>
+              <li>The AI replies with a block of formatting text. <b>Copy from the first line</b>, <code>\documentclass{armymemo}</code>, <b>down through the last line</b>, <code>\end{document}</code> &mdash; nothing above or below it (no stray sentences or <code>```</code> marks).</li>
             </ol>
           </div>
           <div>
             <div class="part-label">Part B &middot; Get the PDF (Overleaf)</div>
             <ol class="steps">
               <li>Unzip the <b>starter kit</b> you downloaded above &mdash; you&rsquo;ll upload two files from it.</li>
-              <li>Go to <a href="https://www.overleaf.com">overleaf.com</a>, sign up free, then click the green <b>New Project &rarr; Blank Project</b>, give it any name, and click Create. <span class="ref">(picture 1 below)</span></li>
+              <li>Go to <a href="https://www.overleaf.com">overleaf.com</a> and sign up free (you&rsquo;ll confirm via an email link). Then click the green <b>New Project &rarr; Blank Project</b>, give it any name, and click Create. <span class="ref">(picture 1 below)</span></li>
               <li>In the file panel on the left, click the <b>upload</b> icon (an up-arrow) and add <code>armymemo.cls</code> and <code>DODb1.pdf</code> from the kit folder. <span class="ref">(picture 2)</span></li>
               <li>The middle area shows a file called <code>main.tex</code> with sample text. Select all of it, delete it, and paste in what you copied from the AI.</li>
               <li>Open <b>Settings</b> (the <a href="https://www.overleaf.com/learn/how-to/Changing_compiler">gear icon</a>) &rarr; <b>Compiler</b> &rarr; choose <b>LuaLaTeX</b> &mdash; the default won&rsquo;t work here. Then click the green <b>Recompile</b>. <span class="ref">(picture 3)</span></li>
               <li>Click <b>Download&nbsp;PDF</b>. That&rsquo;s your memo.</li>
-              <li><b>Blank lines?</b> An underline shows wherever the AI didn&rsquo;t have a detail. In the text, find the matching <code>\rule{&hellip;}</code>, type your information over it, and Recompile.</li>
+              <li><b>Blank lines?</b> An underline shows wherever the AI didn&rsquo;t have a detail. In the text, find the matching <code>\rule{&hellip;}</code>, replace the whole <code>\rule{&hellip;}{&hellip;}</code> with your text, and Recompile.</li>
             </ol>
           </div>
         </div>
