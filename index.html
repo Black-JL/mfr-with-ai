@@ -76,6 +76,17 @@
   .headsup { background:#f7f7f5; border:1px solid var(--rule); border-left:4px solid var(--fg-muted); border-radius:8px; padding:16px 22px; margin-top:24px; font-size:15px; color:var(--fg-soft); }
   .headsup b { color:var(--fg); }
 
+  /* ---- PROMPT BOX + WALKTHROUGH ---- */
+  .steps .ref { color:var(--accent-mid); font-weight:700; font-size:0.88em; white-space:nowrap; }
+  .promptwrap { margin-top:20px; border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+  .promptbar { display:flex; justify-content:space-between; align-items:center; background:var(--accent); color:#fff; padding:9px 14px; font-size:13px; font-weight:700; }
+  .copybtn { background:#fff; color:var(--accent); border:none; border-radius:5px; padding:5px 14px; font-weight:700; font-size:12px; cursor:pointer; font-family:var(--sans); }
+  .copybtn:hover { background:var(--accent-pale); }
+  pre.prompt { margin:0; padding:14px 16px; background:#fafaf8; font-family:var(--mono); font-size:12.5px; line-height:1.5; color:var(--fg); white-space:pre-wrap; word-break:break-word; max-height:360px; overflow:auto; }
+  .walkthrough { margin:22px 0 0; }
+  .walkthrough figcaption { font-size:13px; color:var(--muted); font-style:italic; margin-bottom:9px; }
+  .walkthrough img { width:100%; height:auto; border:1px solid var(--rule); border-radius:8px; display:block; }
+
   /* ---- SAFETY ---- */
   .safety { background:var(--bad-soft); border:1px solid var(--bad); border-left:4px solid var(--bad); border-radius:8px; padding:20px 22px; margin-top:24px; }
   .safety h3 { color:var(--bad); font-size:17px; margin-bottom:10px; }
@@ -172,25 +183,70 @@
           <div>
             <div class="part-label">Part A &middot; Write it (in the chat)</div>
             <ol class="steps">
-              <li>Unzip the starter kit. (Nothing goes to the AI &mdash; you&rsquo;ll only upload two files to Overleaf later.)</li>
-              <li>Open your AI (Ask&nbsp;Sage, ChatGPT, or Claude) and start a new chat. If it asks you to choose a model, pick the newest one.</li>
-              <li>From the kit, open the file <code>sample-prompt.md</code> (it opens in any text app), copy everything in it, and paste it into the chat. It already includes the formatting instructions, so you don&rsquo;t attach anything.</li>
-              <li>Where the prompt shows <code>[brackets]</code>, type in your memo details. Then send.</li>
-              <li>The AI answers with a block of formatting text. Copy it &mdash; but <b>only that text</b>. It should begin with <code>\documentclass</code>; if the AI wrapped it in <code>```</code> marks or added any sentences, leave those out.</li>
+              <li>Open your AI (Ask&nbsp;Sage, ChatGPT, or Claude) and start a new chat. If it asks you to pick a model, choose the newest one.</li>
+              <li><b>Copy the prompt below</b> and paste it into the chat. (It already has the formatting built in, so you don&rsquo;t upload anything here.)</li>
+              <li>Replace the words inside the brackets with your details, but keep the <code>\backslash</code> words exactly as they are. <b>Easiest:</b> leave the <code>&lt;&hellip;&gt;</code> bits alone and just fill the <code>[ brain-dump ]</code> block at the bottom &mdash; the AI fills in the rest. Then send.</li>
+              <li>The AI replies with a block of formatting text. <b>Copy only that text</b> &mdash; it should start with <code>\documentclass</code>. If it added <code>```</code> marks or sentences around it, leave those out.</li>
             </ol>
           </div>
           <div>
             <div class="part-label">Part B &middot; Get the PDF (Overleaf)</div>
             <ol class="steps">
-              <li>Go to <a href="https://www.overleaf.com">overleaf.com</a> &rarr; sign up free &rarr; <b>New Project</b> &rarr; Blank Project.</li>
-              <li>Click <b>Upload</b> and add two files from the kit: <code>armymemo.cls</code> and <code>DODb1.pdf</code>.</li>
-              <li>Delete the sample text in the editing box and paste in what you copied from the AI.</li>
-              <li><b>Important:</b> open the <a href="https://www.overleaf.com/learn/how-to/Changing_compiler">Menu (top-left) and set &ldquo;Compiler&rdquo; to LuaLaTeX</a> &mdash; Overleaf&rsquo;s default won&rsquo;t work here. Then click <b>Recompile</b>.</li>
+              <li>Unzip the <b>starter kit</b> you downloaded above &mdash; you&rsquo;ll upload two files from it.</li>
+              <li>Go to <a href="https://www.overleaf.com">overleaf.com</a>, sign up free, then click the green <b>New Project &rarr; Blank Project</b>, give it any name, and click Create. <span class="ref">(picture 1 below)</span></li>
+              <li>In the file panel on the left, click the <b>upload</b> icon (an up-arrow) and add <code>armymemo.cls</code> and <code>DODb1.pdf</code> from the kit folder. <span class="ref">(picture 2)</span></li>
+              <li>The middle area shows a file called <code>main.tex</code> with sample text. Select all of it, delete it, and paste in what you copied from the AI.</li>
+              <li>Open <b>Settings</b> (the <a href="https://www.overleaf.com/learn/how-to/Changing_compiler">gear icon</a>) &rarr; <b>Compiler</b> &rarr; choose <b>LuaLaTeX</b> &mdash; the default won&rsquo;t work here. Then click the green <b>Recompile</b>. <span class="ref">(picture 3)</span></li>
               <li>Click <b>Download&nbsp;PDF</b>. That&rsquo;s your memo.</li>
               <li><b>Blank lines?</b> An underline shows wherever the AI didn&rsquo;t have a detail. In the text, find the matching <code>\rule{&hellip;}</code>, type your information over it, and Recompile.</li>
             </ol>
           </div>
         </div>
+
+        <!-- THE PROMPT TO PASTE -->
+        <div class="promptwrap">
+          <div class="promptbar"><span>Part A &mdash; paste this into the chat</span><button class="copybtn" onclick="copyPrompt()">Copy</button></div>
+          <pre class="prompt" id="promptText">You are a military correspondence specialist. Write an Army Memorandum for Record that strictly complies with AR 25-50.
+
+Output it as LaTeX source using the `armymemo` document class, matching this exact structure (keep these commands, fill in the values):
+
+    \documentclass{armymemo}
+    \address{&lt;organization name&gt;}
+    \address{&lt;street address&gt;}
+    \address{&lt;city, state  ZIP+4&gt;}
+    \officesymbol{&lt;office symbol&gt;}
+    \signaturedate{&lt;day Month year&gt;}
+    \memoline{MEMORANDUM FOR RECORD}
+    \subject{&lt;subject line, 10 words or fewer&gt;}
+    \author{&lt;FULL NAME IN CAPS&gt;}\rank{&lt;rank spelled out&gt;}\branch{&lt;branch abbrev&gt;}
+    \title{&lt;duty title&gt;}
+    \begin{document}
+    \begin{enumerate}
+    \item References.  &lt;authorities, or omit if none&gt;
+    \item Purpose.  &lt;bottom line up front, 1-2 sentences&gt;
+    \item &lt;body paragraph(s); use nested \begin{enumerate} for subparagraphs&gt;
+    \item The point of contact is the undersigned at &lt;phone&gt; or &lt;email&gt;.
+    \end{enumerate}
+    \end{document}
+
+Writing rules:
+- Active voice throughout. Bottom line up front in paragraph 2 (Purpose).
+- References in paragraph 1, point of contact in the last paragraph.
+- Subject line: 10 words or fewer. Two spaces after each period.
+
+CRITICAL — do not invent any fact. If you do not have a name, date, unit, phone number, or statistic, leave a blank exactly like this: \rule{1.5in}{0.4pt} — never make one up.
+
+OUTPUT FORMAT — return ONLY the raw LaTeX, starting with \documentclass{armymemo}. Do NOT wrap it in markdown code fences (no triple backticks) and do NOT add any explanation before or after it.
+
+Here is what the memo is about:
+[ Brain-dump everything you know here — topic, your name/rank/unit if you want it filled in, the policy or event, key dates, who it's for. Messy is fine. ]</pre>
+        </div>
+
+        <!-- OVERLEAF PICTURES -->
+        <figure class="walkthrough">
+          <figcaption>Part B &mdash; Overleaf, in pictures (an illustration, but the buttons are where you&rsquo;ll find them):</figcaption>
+          <img src="./overleaf-walkthrough.png" alt="Three illustrated Overleaf steps: 1) click the green New Project, then Blank Project; 2) click the upload icon (up-arrow) in the left file panel and add armymemo.cls and DODb1.pdf; 3) open Settings (gear icon), set Compiler to LuaLaTeX, then click Recompile.">
+        </figure>
       </div>
     </div>
 
@@ -282,5 +338,14 @@
     </footer>
 
   </div>
+
+  <script>
+  function copyPrompt(){
+    var t = document.getElementById('promptText').textContent;
+    var done = function(){ var b=document.querySelector('.copybtn'); b.textContent='Copied!'; setTimeout(function(){ b.textContent='Copy'; }, 1600); };
+    if (navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(done, done); }
+    else { var ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} document.body.removeChild(ta); done(); }
+  }
+  </script>
 </body>
 </html>
